@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //对象=属性+方法
+        //js 队象字面量 创建一个对象
+        //js具有强大的表现力 简单
+        //const--》 常量 不可改变
+        //let--》 变量 可以改变
+        const boy ={
+            //属性
+            name:'李华',//string
+            age:100,//number JS只有整数  浮点类型
+            address:'China',//string
+            uses:['学习','进大厂','赚钱'],//js没有数组，也是对象
+            isSingle:true,//boolean  
+            //属性
+            //方法
+            //形参（target）  使用驼峰命名
+            sendFlower(target){
+                target.receiveFlower(boy);
+            }
+        }
+        //申明另外一个对象 
+        //使用 {} 代表声明这个对象 官方术语：对象字面量（从字面意义上了解该对象）
+        const  girl ={
+            name:'小美',
+            age:101,
+            address:'China',
+            uses:['学习','进大厂','赚钱'],//js没有数组，也是对象
+            isSingle:true,
+           
+            receiveFlower(sender){
+                schoolBeauty.receiveFlower(sender)
+                setTimeout(function(){
+                    //2秒后  改变心情分数
+                    schoolBeauty.feelingScore = 99
+                    schoolBeauty.receiveFlower(sender)
+                },5000);
+                //打印 事件
+                //console.log(sender.name+'送了花');
+            }
+        }
+        const schoolBeauty ={
+            name:'校花',
+            age:102,
+            address:'America',
+            uses:['化妆'],
+            feelingScore:30,
+            //两个对象      接口 interface
+            receiveFlower(sender){
+                //===  强类型判断  类型+值
+                //==  弱类型判断  只判断值(先转化类型再比较值)
+                /*if(sender.name==='李华'){
+                    console.log('become a couple...')
+                    return;
+                }*/
+                // schoolBeauty.receiveFlower(sender);
+                
+                if(schoolBeauty.feelingScore < 80){
+                    console.log('gun gun gun')
+                }
+                else{
+                    console.log(sender.name+'送花被接受')
+                }
+                
+            }
+        }
+    </script>
+</body>
+</html>

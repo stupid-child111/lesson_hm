@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css(层叠样式表)</title>
+    <style>
+        /*优先级：1*/
+        p {
+            color: chocolate;
+        }
+
+        /*优先级：11*/
+        .container p {
+            color: aqua;
+        }
+
+        /*优先级：101*/
+        #main p {
+            color: blue;
+        }
+
+        /*优先级：*/
+        p {
+            color: chocolate !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!--attribute 属性 -->
+
+    <div id="main" class="container">
+        <!--优先级：1000 -->
+        <p style="color:black">苦逼的学习的日子</p>
+</body>
+
+</html>
