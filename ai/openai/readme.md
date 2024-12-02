@@ -11,3 +11,14 @@
 - node main.mjs 运行文件
 - npm i opanai 安装 openai 包
 - npm node 包管理器
+
+- es6 模块化
+ - 项目功能模块划分
+ - es6之前不支持import，export 等模块化
+ - es6字符串模板符号 **` 字符串内容可分行，提高代码可读性   `**
+ 
+
+ - git
+    git add .
+    git commit -m "coze and openai"
+    git push origin main
