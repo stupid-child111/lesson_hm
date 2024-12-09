@@ -1,4 +1,4 @@
-//时间复杂度O(n)--O(log n)
+//时间换空间   时间复杂度O(n)--O(log n)
 function fun3(x,n){
     if(n===0) {
         return 1;

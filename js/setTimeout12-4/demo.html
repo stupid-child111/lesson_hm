@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout实现定时器功能</title>
+</head>
+
+<body>
+    <script>
+      /*  function customSetInterval(fn, time) {
+            let intervalId = null;
+            function loop() {
+                loop();
+                intervalId = setTimeout(() => {
+                    fn();
+                    loop();
+                }, time)
+            }
+            loop();
+            return () => clearTimeout(intervalId)
+        }
+        customSetInterval(function(){
+            console.log('手搓计时器')
+        },1000)*/
+        function customSetInterval(fn, time) {
+            let intervalId = null;
+            function loop() {
+                intervalId = setTimeout(() => {
+                    fn();
+                    loop(); // 在定时器回调中调用 loop 函数
+                }, time)
+            }
+            loop();
+            return () => clearTimeout(intervalId)
+        }
+        const interval = customSetInterval(function(){
+            console.log('手搓计时器')
+        },1000)
+
+        setTimeout(() =>{
+            interval()
+        },5000)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖节流</title>
+</head>
+
+<body>
+    <div>
+        <label for="unDebounceInput">用户搜索</label>
+        <input type="text" id="unDebounceInput" placeholder="请输入要搜索的用户名字">
+    </div>
+    <ul id="users">
+
+    </ul>
+    <script>
+        const oUL = document.querySelector('#users');
+        //通往后端接口获取数据
+        const oInput = document.getElementById('unDebounceInput');
+        const debounceNameSearch =debounce(handleNameSearch,500);
+        oInput.addEventListener('keyup'/*键盘弹起*/,debounceNameSearch)
+        function handleNameSearch(){         // console.log('用户输入',this/*作为普通函数指向全局*/
+            // /*此处作为事件处理函数指向事件发生目标元素*/.value);
+            let value = oInput.value.trim();
+            if (!value) {
+                oUL.innerHTML = "";
+                return;
+            }
+            
+            fetch('http://localhost:3000/users')/*拉取请求*/.then(res => res.json())
+                .then(users => {
+                    //console.log(users);
+                    //箭头函数的优雅简洁 + filter的新功能
+                    const filterUsers = users.filter(
+                        user => user.name.includes(value)//筛选返回值
+                    )//了解includes  filter
+                    //Array 在es6新增的方法
+                    oUL.innerHTML = filterUsers.map(user => `
+                        <li>
+                            ${user.name}
+                        </li> 
+                        `
+                    ).join("")
+                    //    for(let user of filterUsers){
+                    //        const oLI = document.createElement('li');
+                    //        oLI.innerText = user.name;
+                    //        oUL.appendChild(oLI);
+                    //    }
+
+                })
+  }
+  //防抖
+  //高阶函数
+  function debounce(fn,delay){
+    let id
+    return function(){
+        //console.log('hello,world')
+        //限流
+        clearTimeout(fn.id);
+        fn.id = setTimeout(() =>{
+            fn()
+        },delay)
+    }
+  }
+    </script>
+</body>
+
+</html>

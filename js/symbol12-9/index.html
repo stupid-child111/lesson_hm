@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+<body>
+    <script>
+        //防止重复
+        const wes = Symbol('wes');
+        //对象字面量
+        let name = "李华"
+        const classmates = {
+            //字符串 同一个变量多次定义会被覆盖
+                "zhang":1,
+                "zhang":2,
+                [name]:"帅哥",
+                'Olivia':{ grade:66,gender:'male'},
+        
+
+                //Symbol 代替字符串作为key
+                [Symbol('Mark')]:{ grade:66,gender:'male'},
+                [Symbol('Olivia')]:{ grade:99,gender:'female'},
+        }
+        console.log(classmates[name],classmates.zhang,classmates[Symbol('Mark')],classmates);
+        //二维
+        for(let [key, val] of Object.entries(classmates)){
+            console.log(key,val);
+        }
+        for(const person in classmates){
+            console.log(person,classmates[person]);
+        }
+
+        const syms = Object.getOwnPropertySymbols(classmates);
+        console.log(syms);
+
+
+        const data = syms.map(sym => classmates[sym].grade);
+        console.log(data)
+        //属性描述符
+        console.log(Object.getOwnPropertyDescriptors(classmates));
+    </script>
+</body> 
+</html>
