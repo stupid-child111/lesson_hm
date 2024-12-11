@@ -1,0 +1,309 @@
+/* 以下为 css reset  */
+/* 重置所有元素的外边距和内边距为0 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kinset,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* 使HTML5元素在老版本IE浏览器中能正确显示 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+/* 重置列表样式 */
+ol,
+ul {
+    list-style: none;
+}
+
+/* 重置链接的默认样式 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 重置表格相关样式 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 重置表单元素的默认样式 */
+input,
+textarea,
+button,
+select {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: inherit;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+/* 重置图像元素的垂直对齐方式 */
+img {
+    vertical-align: middle;
+}
+
+/* 重置HTML5音频和视频元素的默认样式 */
+audio,
+video {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+/* 重置HTML5画布元素的默认样式 */
+canvas {
+    display: inline-block;
+}
+
+
+/* 以上为 css reset  */
+
+
+/*业务样式*/
+html,
+body {
+    height: 100vh;
+}
+
+body {
+    background: #000 url('./images/bg.jpg');
+}
+
+/* 背景盒子 */
+.starwars {
+    perspective: 800px;
+    /* 透视点 */
+    transform-style: preserve-3d;
+    /* 支持3d效果 */
+    height: 17em;
+    width: 34em;
+    position: absolute;
+    /* 绝对定位 
+    以页面左上角定位
+    设定后 body盒子的左上角在页面正中心
+    再用 translate 移动 body 中心到页面正中心
+    */
+    top: 50%;
+    left: 50%;
+    /*针对自身大小移动*/
+    transform: translate(-50%, -50%);
+    background: black;
+}
+
+img {
+    width: 100%;
+}
+
+.star,
+.wars,
+.byline {
+    position: absolute;
+}
+
+.star {
+    top: -0.75em;
+}
+
+.wars {
+    bottom: -0.5em;
+}
+
+.byline {
+    color: white;
+    font-size: 2.25em;
+    left: -0.4em;
+    right: -2em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    top: 40%;
+}
+
+.star {
+    /* 动画名字 + keyframes 定义动作*/
+    animation: star 5s ease-out infinite;
+}
+
+.wars {
+    animation: wars 5s ease-out infinite;
+
+}
+
+@keyframes star {
+    0% {
+        opacity: 0;
+        transform: scale(1.5) translateY(-0.75em);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    89% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateZ(-1000em);
+    }
+}
+
+@keyframes wars {
+    0% {
+        opacity: 0;
+        transform: scale(1.5) translateY(-0.5em);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateZ(-1000em);
+    }
+}
+
+.byline {
+    animation: movie-byline 10s linear infinite;
+
+}
+
+.byline span{
+    animation: spin-letters 10s linear infinite;
+}
+
+.byline span{
+    display: inline-block;
+}
+
+@keyframes movie-byline {
+    0% {
+        transform: translateZ(3em);
+    }
+
+    100% {
+        transform: translateZ(0em);
+    }
+}
+
+@keyframes spin-letters{
+    0%,10%{
+        opacity: 0;
+        transform: rotateY(90deg);
+    }
+    30%{
+        opacity: 1;
+    }
+    70%,86%{
+        transform: rotateY(0);
+        opacity: 1;
+    }
+    95%,100%{
+        opacity: 0;
+    }
+}
