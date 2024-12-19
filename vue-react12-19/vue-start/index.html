@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 Counter</title>
+    <script src="./vue.js"></script>
+    <!-- 通过链接 --》 vue3   不是本地,通过cdn引入(内容分发网络)
+    cdn一般分配静态资源(html,css,js,图片,视频)
+    动态资源(java,node,数据库,服务器集群)
+    cdn 快速内容访问和发布的机制 -->
+</head>
+<body>
+    <!-- vue3工作的挂载点
+    以前使用 DOM appendChild  性能不好 -->
+    <div id="root">
+    <!-- vue 应用 工作领地 -->
+     <h1>{{str}}  {{LLM}}</h1><!--静态数据-->
+     <p>Count: {{count}}</p><!--动态数据-->
+     <button @click="increase">+1</button>
+    </div>
+    <script type="module">
+        //console.log('hello vue3')
+        const{
+            createApp,//创建Vue应用
+            ref
+        } = Vue
+
+        createApp({
+            //data
+            //methods
+            //setup 准备所需数据
+            setup() {
+                const str = ref("hello vue");//响应式对象
+                //ref 提供.value方法
+                //let count = 0;简单的变量
+                //规避DOM操作
+
+
+                const count = ref(0);
+                console.log(Object.prototype.toString.call(count))
+                const increase = () => {
+                    count.value++;
+                    //console.log('------------')
+                }
+                return {
+                    LLM:'走向 Llama3 智能前端！',
+                    count,
+                    str,
+                    increase
+                }
+            }
+        }).mount('#root')//挂载点
+    </script>
+</body>
+</html>

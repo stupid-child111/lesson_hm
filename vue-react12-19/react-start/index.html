@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React with Babel</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 渲染 React 组件的目标元素 -->
+    <div id="root"></div>
+
+    <!-- 引入 React 和 ReactDOM 库 -->
+    
+
+    <!-- 使用 Babel 编译的 React 代码 -->
+    <script type="text/babel">
+        //函数组件
+        const{
+            useState
+        } = React; 
+        console.log('///////////////////')
+        function Counter(){
+            //声明响应式
+            const [count,setCount] = useState(0)
+            //const count = 0;
+            const increase = () => {
+                setCount(count+1)
+            }
+            return (
+                <div>
+                    Count: {count}
+                    <button onClick={increase}>+1</button>
+                </div>
+            )
+        }
+        // 渲染一个简单的 React 组件
+        ReactDOM.render(<Counter />, document.getElementById('root'));
+        //渲染一个Counter组件
+    </script>
+</body>
+
+</html>
