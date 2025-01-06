@@ -1,0 +1,3 @@
+- vue3 响应式
+  - ref  .value  响应式对象  代理value属性 Object.defineProperty 性能好
+  - reactive  响应式代理 proxy  代理整个对象
