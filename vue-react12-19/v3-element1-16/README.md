@@ -37,4 +37,28 @@
 
   - 添加路由守卫
 
+- 表单组件
+  - 看文档
+  - :model 收集表单数据
+  - ref 获取表单实例
+    - 有时获取一个DOM元素 (组件对象)
+    - 需调用相对应的方法
+    - template 用ref标记 DOM | 组件
+    - const formRef = ref(null) 挂载前为null
+    - 挂载后获取到
+  - 表单的校验
+    - rules
+    - items prop
+    - 调用 validate 方法 boolean
+
+
+- 布局组件
+  - Elcontainer
+  - Elheader
+  - ElAside
+  - ElMain
+  - ElRow
+  - ElCol
+
+
 子路由的路径

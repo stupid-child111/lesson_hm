@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../pages/Home.vue";
-import About from "../pages/About.vue";
-import Login from "../pages/Login.vue";
+// import Home from "../pages/Home.vue";
+// import About from "../pages/About.vue";
+// import Login from "../pages/Login.vue";
 
 
 // 路由配置数组
@@ -50,10 +50,10 @@ const router = createRouter(
 //路由守卫
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title || '掘金'
-    if(to.meta.requireLogin){
-        next('/login')
-        return
-    }
+    // if(to.meta.requireLogin){
+    //     next('/login')
+    //     return
+    // }
     next()
 })
 
