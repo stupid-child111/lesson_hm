@@ -59,6 +59,38 @@
   - ElMain
   - ElRow
   - ElCol
+ 
 
+- web 应用登录
+  - http  基于请求 + 响应的简单协议  需要一个用户状态
+  - 会话  session
+  - cookie
+  - 服务器 通过解析请求带上的证明 知道此次请求由那个用户发起的
+  - 用户携带身份证明 告知服务器 who i am
+  - {
+    userId: 'admin',
+    name:'管理员',
+    avatar: '------------'
+  }
+
+
+  - 登录流程
+    - 前端提交登录请求
+       - login.vue 组件化表单
+       - 调用 api/login 接口
+         - 项目多了一层目录 api 目录 管理应用的所有接口
+         - 接口好管理 进行统一维护
+         - 和组件解耦
+       - 统一配置axios实例 发送请求
+    - 后端验证？
+      - mock 模拟后端
+         apifox 跳过前端  模拟get/post 等请求
+         前端 mock 跳过后端 模拟后端请求
+         具有前后端分离的能力  前端独立完成项目开发 不需要等待后端接口
+
+    - iwt 登录
+      - npm i jsonwebtoken  json + web + 令牌
+      - sign 签发
+      - token 使用 verify 方法 验证 通过后返回 用户对象 name avatar.....
 
 子路由的路径

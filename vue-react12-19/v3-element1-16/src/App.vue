@@ -1,11 +1,5 @@
 <script setup>
-import { ref, reactive } from 'vue';
-const formRef = ref(null);
-//收集表单数据
-const form = reactive({
-  username: '',
-  password: ''  
-})
+
 </script>
 
 <template>

@@ -24,6 +24,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue';
+import { login } from '../api/index';
 const formRef = ref(null);
 //收集表单数据
 const form = reactive({
@@ -45,9 +46,22 @@ const loading = ref(false);
 const onSubmit = async () => {
     console.log(formRef.value);
   loading.value = true;
-  await formRef.value.validate((valid) => {
+  await formRef.value.validate(async (valid) => {
+    // B/S
+    //发送发请求给后端
+    //账号、密码数据库是否匹配
+    //匹配后发送前端一个凭证  token
+    //以后的请求都携带上token
+    //服务器匹配 token 获取用户对象
     if (valid) {
       console.log('验证成功');
+      const res  = await login(form);
+    //   console.log(res);、
+    if(res.data.code === 200) {
+        console.log(res.data.data);
+    }else{
+        console.log(res.data.message);
+    }
     } else {
       console.log('验证失败');
     }
