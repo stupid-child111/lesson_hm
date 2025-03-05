@@ -7,6 +7,7 @@ const Router = require('koa-router');//路由
 const router = new Router();//实例化
 
 const axios = require('axios');
+const bodyParser = require('koa-bodyparser');
 
 //添加跨域支持功能
 //ctx = req 中间件 (跨域 路由 错误处理... )  res     
@@ -28,10 +29,10 @@ app.use(async(ctx,next) => {
     }
     await next();
 })
-// app.use(async(ctx,next) => {
-//     console.log('--------------解析参数中间件')
-//     next();
-// })
+/**
+ * 启用 bodyparser 中间件
+ */
+app.use(bodyParser())
 
 //新建首页 / 路由
 router.get('/', async (ctx) => {
@@ -59,7 +60,10 @@ app.use(router.routes())
 //后端 只需要返回 api 接口数据 json数组
 //流程 前端 react axios 向 /chatai 发送 post 请求
 router.post("/chatai", async (ctx) => {
-    const message = 'hello';
+    //写死了 message 请求体中解出来
+    //解析请求体参数中间件
+    // console.log(ctx.request.body, '----------')
+    const message = ctx.request.body.message || '';
     const data = {
         model: 'deepseek-r1:1.5b',//按需选择，进行定制
         messages: [{
