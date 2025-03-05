@@ -94,3 +94,17 @@
       - token 使用 verify 方法 验证 通过后返回 用户对象 name avatar.....
 
 子路由的路径
+
+
+- mock  前后端通信的工作流程
+  - vitejs 启用  viteMockServe 插件
+  - mock 目录下的文件 模拟声明  后端接口
+  - api 目录下编写了接口的封装 axios
+  - 前端组件 onMounted 生命周期 发起接口请求
+
+
+- 需要验证用户身份的接口
+  - token 在 localStorage 中
+  - ?token=${token} 每个请求都得带上 很繁琐
+  - req 请求行，请求头 请求体 (post get没有)
+  - 请求头 Authorization：Bearer ${token}

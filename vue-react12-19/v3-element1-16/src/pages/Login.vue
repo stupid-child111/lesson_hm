@@ -1,6 +1,6 @@
 <template>
     <el-form 
-    style="position: absolute; left: 50%;"
+    style="position: absolute; left:50%;"
     ref="formRef"
     :model="form"
     :rules="rules"
@@ -25,6 +25,9 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { login } from '../api/index';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();//hooks编程
 const formRef = ref(null);
 //收集表单数据
 const form = reactive({
@@ -58,7 +61,10 @@ const onSubmit = async () => {
       const res  = await login(form);
     //   console.log(res);、
     if(res.data.code === 200) {
-        console.log(res.data.data);
+        let token = res.data.data;
+        localStorage.setItem('token', token);
+        router.push('/');
+
     }else{
         console.log(res.data.message);
     }

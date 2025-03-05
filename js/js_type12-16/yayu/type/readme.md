@@ -1,16 +1,15 @@
 # js类型转换
 
 - es6之前  js类型  6种
- - 简单数据类型 Primitive  拷贝式赋值
-   - String Number Boolean Null Undefinded(栈内存) 
+ - 简单数据类型 Primitive  **拷贝式赋值**
+   - String Number Boolean Null Undefinded(**栈内存**) 
  - 复杂类型 引用式赋值
-   - Object(堆内存)
+   - Object(**堆内存**)
 - 为什么JS 类型改变
   - JS 是弱类型语言
   - 变量的类型 可改变
   - 搞清楚变量的确切类型
    - Primitive 类型-->其他类型的转换
-     - Boolean
    - Object 类型-->其他类型的转换
 
 - Boolean 显示类型转换规则

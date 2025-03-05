@@ -13,11 +13,22 @@
 //     }
 // ]
 import pkg from 'jsonwebtoken';
-const {sign} = pkg  //sign jwt 给的api
+const {sign, verify} = pkg  //sign jwt 给的api
 //密钥
 const secret ='xmy666'
 
 export default [
+    {
+         url: '/api/gettUserInfo',
+         method: 'get',
+         response: req => {
+          //req? token? => decode => user
+          return {
+             user: 'admin',
+              //  msg:'哈哈哈', 
+          }
+         } 
+    },
     {
       url: '/api/login',
       method: 'post',
@@ -25,7 +36,7 @@ export default [
       response: (req, res) => {
         let body = req.body
         // console.log(body)
-        if (body.username !== 'admin' || body.password !== '123456') {
+        if (body.username !== 'admin' || body.password !== '111111') {
           return {
             code: 60204,
             message: '账号或者密码错误，请重新输入'

@@ -1,6 +1,8 @@
 <template>
     <div>
         PostShow{{ postId }}
+        <hr>
+        <router-view />
     </div>
 </template>
 

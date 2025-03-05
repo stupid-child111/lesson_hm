@@ -13,7 +13,7 @@
 
 - babel 
   - 可以让任何的 js 新特性， 立即投入代码生产使用
-    满足当前环境所需  比如 async/await  es8新特性 也能通过babel转化为es5
+    满足当前环境所需  比如 async/await  es7新特性 也能通过babel转化为es5
   - es6 能快速到来的，得益于 babel 工程化转译工具
   - 前端工程化 成熟 vite/babel/stylus/webpack
   - vite 工程总负责  babel 负责代码转译

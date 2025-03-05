@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 Counter</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+        <h1>{{str}} {{LLM}}</h1>
+        <p>Count: {{count}}</p>
+        <button @click="increase">+1</button>
+    </div>
+    <script type="module">
+
+        const {
+            createApp,
+            ref
+        } = Vue
+
+        createApp({
+
+            setup() {
+                const count = ref(0);
+                console.log(Object.prototype.toString.call(count))
+                const increase = () => {
+                    count.value++;
+
+                }
+                return {
+                    count,
+                    increase
+                }
+            }
+        }).mount('#root')
+    </script>
+</body>
+
+</html>

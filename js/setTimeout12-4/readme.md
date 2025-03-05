@@ -16,9 +16,9 @@
   - 手写题  
     - customSetInterval    函数名
     - callback ，time   参数
-    - 可以使用setTimeout 实现
+    - 可以使用setTimeout 实现 
     - 递归
     - 关闭
 
-- call
+- call apply bind
   - 函数对象上的方法

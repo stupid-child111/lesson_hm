@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import MousePosition from './components/MousePosition.vue';
+import MousePosition from './components/MousePosition2.vue';
 const showMouse = ref(true);
 function toggleMouse() {
   showMouse.value = !showMouse.value;
