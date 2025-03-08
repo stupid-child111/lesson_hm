@@ -59,9 +59,49 @@ Python 3.12.8
   2XX 成功... 201 created  204 No Content
   3XX 重定向
   4XX 客户端错误
+    405 Method Not Allowed
   5XX 服务器端错误
 
 响应头里第一个数据包 浏览器 或者程序  通过状态码就知道怎么处理
 状态码是程序逻辑的一部分
 
 - env 文件
+
+
+## 界面
+
+- html 结构
+   - 写注释
+   - 图标字体库 font-awesome iconfont
+     - 性能优化
+     - 小图标都用图片，http 请求数的暴涨，网页同时并发请求数有限
+     - 下载一个图标字体库
+     - fas fa-comment-alt
+     - font-awesime 不提供选择，都是一样的  iconfont 提供定制
+
+   - css 样式的组合 面向对象特性 多态 方便复用和维护
+     tailwindcss 原子类
+   - textarea LLM支持比较多的tokens 出入长度  kimi deepseek
+
+   - 语义化标签
+
+- **CSS**
+   - 弹性布局
+     - 居中
+       子元素相对父元素的居中
+       justify-content:center  横轴 flex-start spac-between
+     - align-items 纵轴
+     -flex-direction：row|column
+   - grid 布局
+     display：grid；
+     grid-template-columns：1fr 1fr；
+     grid-template-rows：1fr 1fr；
+
+   - 响应式布局
+     width max-width 
+     @media screen and (max-width: 768){
+
+     }
+   - transition animation
+     - width transition ipad 旋转屏幕
+
