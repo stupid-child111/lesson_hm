@@ -134,6 +134,13 @@ Python 3.12.8
       操作系统  浏览器版本  内核
       - navigator.cliboard
       剪切板 ctrl + c
+      - localStorage
+        - 本地存储
+        - 本地存储大小  5M  cokie kb 每次请求都会带上
+        - getItem(null) 返回 null
+        - setItem
+      - array,string 方法强化一下
+        slice
 
 
    - 代码风格

@@ -3,6 +3,9 @@
  * 请求...
  * 不出问题 ，最快事件 (比onLoad早)
 */
+
+//常量配置
+const MESSAGE_LIMIT = 50;
 document.addEventListener('DOMContentLoaded',function(){
     console.log('DOMContentLoaded')
     const backToTopButton = document.getElementById('back-to-top');
@@ -63,8 +66,21 @@ document.addEventListener('DOMContentLoaded',function(){
         })
         messageWrapper.appendChild(copyButton);
     }
+
+    //保存聊天记录
+    const saveChatLog = (role,content) => {
+        //parse localstorage 存放字符串 想放入json格式对象 存之前 stringify
+        //拿出来 parse  
+        const chatLog = JSON.parse(localStorage.getItem('chatLog')) || [];
+        chatLog.push({
+            role,
+            content
+        })
+        localStorage.setItem('chatLog',JSON.stringify(chatLog))
+    }
+
     //添加消息到 chat-log中
-    const appendMessage = (role,content) => {
+    const appendMessage = (role,content,type='save') => {
         const messageWrapper = document.createElement('div');
         messageWrapper.classList.add('message', role);
 
@@ -80,10 +96,13 @@ document.addEventListener('DOMContentLoaded',function(){
         }else{
             bubble.textContent = content;
             messageWrapper.appendChild(bubble);
-            chatLogElement.scrollTop = chatLogElement.scrollHeight;
         }
         messageWrapper.appendChild(bubble);
-        chatLogElement.appendChild(messageWrapper);
+        chatLogElement.appendChild(messageWrapper); 
+        chatLogElement.scrollTop = chatLogElement.scrollHeight;
+        if(type === 'save'){
+        saveChatLog(role,content)//bug原因
+        }
     }
 
     //发送消息，调用接口
@@ -150,6 +169,18 @@ document.addEventListener('DOMContentLoaded',function(){
             document.querySelector('.send-icon').click();//触发点击事件
         }
     })
+
+    const loadChatLog = () => {
+        const chatLog = JSON.parse(localStorage.getItem('chatLog')) || [];
+         //解构
+        chatLog.slice(-MESSAGE_LIMIT).forEach(
+            ({role,content}) => appendMessage(role,content,'init')
+        )
+    }
+    const main = () => {
+        loadChatLog();
+    };
+    main();
 })
 // // 所有资源加载完后 
 // window.addEventListener('load',function(){
