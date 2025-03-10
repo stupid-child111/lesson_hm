@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded',function(){
     console.log('DOMContentLoaded')
     const backToTopButton = document.getElementById('back-to-top');
     const chatLogElement = document.getElementById('chat-log');
+    const conversationListElement = document.getElementById('conversation-list');
     const messageInput = document.getElementById('message');
     const loadingIndicator = document.querySelector('.loading-indicator');
     //scrollTop
@@ -177,10 +178,88 @@ document.addEventListener('DOMContentLoaded',function(){
             ({role,content}) => appendMessage(role,content,'init')
         )
     }
+    
+
+    //保存当前对话 to be continue(未完成)
+    const saveCurrentConversation = () => {
+        const currentChatLog = JSON.parse(localStorage.getItem('chatLog')) || [];
+        //存储历史
+        const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+        const timestamp = new Date().toLocaleString();
+        chatHistory.push({
+            //产品需求 实现
+            name: `对话 ${chatHistory.length + 1} (${timestamp})`,
+            messages: currentChatLog
+        })
+        localStorage.setItem('chatHistory',JSON.stringify(chatHistory));
+    }
+
+
+    //创建新的对话
+    const startNewConversation = () => {
+        // console.log('new conversation');
+        saveCurrentConversation();
+        localStorage.removeItem('chatLog');
+        chatLogElement.innerHTML = '';
+    }
+
+
+    const loadConversationList = () => {
+        const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+        chatHistory.forEach((conversation,index) => {
+            const button = document.createElement('button');  
+            button.setAttribute('data-index',index);             // 数据属性
+            button.innerHTML = `${conversation.name} <span class="delete-btn" data-index="${index}">X</span>`
+            //性能不好
+            // button.onclick = function () {
+            //     console.log(this.innerHTML);
+            // }
+            conversationListElement.appendChild(button);
+        })
+    }
+
+
+    const loadConversation = (index) => {
+        const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+        const conversation = chatHistory[index].messages || [];
+        chatLogElement.innerHTML = '';
+        conversation.slice(-MESSAGE_LIMIT).forEach(({
+            role,
+            content
+        }) => appendMessage(role,content));
+        localStorage.setItem('chatLog',JSON.stringify(conversation));
+    }
+
+
+    const deleteChatHistory = (index) => {   
+        //to be continue
+    }
+
+    // DOM  level 2
+    conversationListElement.addEventListener('click',function(event){
+        console.log(event.target);
+        const index = event.target.getAttribute('data-index')  || 0;
+        //remove history  删除历史
+        if(event.target.nodeName === 'SPAN'){
+            deleteChatHistory(index);
+            return;
+        }
+
+        //加载历史
+        loadConversation(index); 
+    })
+
+
+
     const main = () => {
         loadChatLog();
+        loadConversationList();
     };
     main();
+
+    //从局部挂载到全局作用域
+    window.startNewConversation = startNewConversation;
+    window.saveCurrentConversation = saveCurrentConversation;
 })
 // // 所有资源加载完后 
 // window.addEventListener('load',function(){

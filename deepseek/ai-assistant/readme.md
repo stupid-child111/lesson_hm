@@ -84,6 +84,11 @@ Python 3.12.8
    - textarea LLM支持比较多的tokens 出入长度  kimi deepseek
 
    - 语义化标签
+   - 无障碍访问
+     label + for
+   - form 表达增强功能
+     input type [number|range......]
+     placeholder
 
 - **CSS**
    - 弹性布局
@@ -141,7 +146,26 @@ Python 3.12.8
         - setItem
       - array,string 方法强化一下
         slice
+      - event 事件机制
+        - dom level  和 event  两个概念  dom level 涉及 event相关的定义
+        - onclick(内嵌 DOM 0级事件)  addEventListener(事件监听  DOM 2级)
+        - 小红书 (JS高级程序设计)
+        - **事件冒泡 | 捕捉**
+        - **事件委托**
+          事件监听  内存开销比较大
+            - 利用冒泡机制 父元素上监听一次  性能好  事件委托
+            - event.target  目标元素  data-index  数据属性
 
+      - 产品需求
+        - 产品经理提出产品需求
+        - 设计师 界面设计
+        - 前端 vue/react 完成需求
+          - 分析
+          - 技术设计
+          - 代码实现
+          - debug
+          - 交付上线
+        - 后端 数据和MVC 提供api  
 
    - 代码风格
      - 注释
@@ -160,3 +184,4 @@ Python 3.12.8
   - 发消息业务
   - 流式输出
   - 剪贴板功能
+  - 聊天历史分组功能
