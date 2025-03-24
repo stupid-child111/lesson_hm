@@ -7,6 +7,8 @@ import {
     h
   } from "snabbdom";
   
+
+  //2、创建 patch 函数
   const patch = init([
     // 通过传入模块初始化 patch 函数
     classModule, // 开启 classes 功能
@@ -15,32 +17,25 @@ import {
     eventListenersModule // 添加事件监听
   ]);
   
-  const container = document.getElementById("container");
-  
-  const vnode = h("div#container.two.classes", { on: { click: function(){
+  //1、创建虚拟节点   不会真正展示在页面上
+  const myVnode1 = h("a", 
+    { props: { 
+        href: "http://www.baidu.com" ,
+        //链接指向的页面会在一个新的浏览器窗口或者新的标签页中打开
+        target: "_blank"
+    } },
+     "百度");
+//   console.log(myVnode1);
 
-  } } }, [
-    h("span", { style: { fontWeight: "bold" } }, "This is bold"),
-    " and this is just normal text",
-    h("a", { props: { href: "/foo" } }, "I'll take you places!")
-  ]);
-  // 传入一个空的元素节点 - 将产生副作用（修改该节点）
-  patch(container, vnode);
-  
-  const newVnode = h(
-    "div#container.two.classes",
-    { on: { click: function(){
-        
-    } } },
-    [
-      h(
-        "span",
-        { style: { fontWeight: "normal", fontStyle: "italic" } },
-        "This is now italic type"
-      ),
-      " and this is still just normal text",
-      h("a", { props: { href: "/bar" } }, "I'll take you places!")
-    ]
-  );
-  // 再次调用 `patch`
-  patch(vnode, newVnode); // 将旧节点更新为新节点
+const myVnode2 = h("div",{}, "我是一个盒子");
+
+const myVnode3 = h("ul", {}, [
+    h("li", {}, "苹果"),
+    h("li", {}, "香蕉"),
+    h("li", {}, "西瓜")
+]);
+
+  //3、将虚拟节点转换为真实节点  渲染到DOM树，展示到页面上
+  const container = document.getElementById("container");
+  //一个容器只能让一个节点显示
+    patch(container, myVnode3);
