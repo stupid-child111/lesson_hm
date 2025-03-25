@@ -44,3 +44,19 @@ h('a', { props: { href:'http://www.example.com'}},'示例');
 <p v-if="!mmm"></p>
 <p v-if="!mmm"></p>
 </div>
+
+
+![alt text](image.png)
+
+调用patch函数
+
+判断oldNode是 虚拟节点 还是 DOM节点
+
+包装成虚拟节点
+
+oldNode 和newNode是不是同一个节点(sel  和 key 相同)
+
+是  精细化比较    不是     暴力删除插入 
+
+
+创建节点，所有子节点需要递归创建
