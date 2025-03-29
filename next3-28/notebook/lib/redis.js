@@ -1,4 +1,5 @@
 import Redis from "ioredis";
+import { v4 as uuidv4 } from "uuid";
 
 const redis = new Redis()
 
@@ -21,4 +22,25 @@ export async function getAllNotes() {
 
     return await redis.hgetall("notes")
 
+}
+
+//CRUD  增删改查
+//如果在同一毫秒内多次调用 addNote 函数，可能会生成相同的 uuid。为了避免这种情况，可以使用更专业的 uuid 生成库，如 uuid 库。
+export async function addNote(data) {
+    //唯一值
+    const uuid = uuidv4();//uuid 库
+    // const uuid = Date.now().toString();
+    await redis.hset("notes",[uuid],data);
+}
+
+export async function getNote(uuid) {
+    return JSON.parse(await redis.hget("notes",uuid));
+}
+
+export async function delNote(uuid) {
+    return redis.hdel("notes",uuid);
+}
+
+export async function updateNote(uuid,data) {
+    await redis.hset("notes",[uuid],data);
 }
