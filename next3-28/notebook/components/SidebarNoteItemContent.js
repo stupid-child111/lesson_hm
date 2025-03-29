@@ -15,7 +15,7 @@ export default function SidebarNoteItemContent({
     }) {
         const router = useRouter();//路由对象
         const pathname = usePathname();//当前路径
-        const selectedId = pathname?.split('/')[1] || null;
+        const selectedId = pathname?.split('/')[2] || null;
         const [isExpanded,setIsExpanded] = useState(false);
         const itemRef = useRef(null);
         const [isPending] = useTransition();//添加动画  过渡状态  布尔值  正在加载中
@@ -48,7 +48,8 @@ export default function SidebarNoteItemContent({
                     backgroundColor: isPending
                     ?'var(--gray-80)'
                     :isActive
-                    ?'var(--secondary-blue)':''
+                    ?'var(--secondary-blue)':'',
+                    border: isActive?'1px solid var(--primary-border)':'1px solid transparent'
                 }}
                 onClick={() => {
                     router.push(`/note/${id}`) 
@@ -65,7 +66,7 @@ export default function SidebarNoteItemContent({
                 >
                     {
                         isExpanded? (
-                            <img src="/chevron-dowm.svg"
+                            <img src="/chevron-down.svg"
                             width="10px"
                             height="10px"
                             alt="Collapse"
@@ -79,6 +80,7 @@ export default function SidebarNoteItemContent({
                         )
                     }
                 </button>
+                {isExpanded && expandedChildren}
             </div>
         )
 }
