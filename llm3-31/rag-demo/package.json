@@ -1,0 +1,16 @@
+{
+  "name": "rag-demo",
+  "version": "1.0.0",
+  "description": "RAG 既检索增强生成，结合外部知识和 LLM 生成，提升回答质量。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "openai": "^4.91.0"
+  }
+}
