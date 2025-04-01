@@ -1,0 +1,18 @@
+{
+  "name": "agent-movie",
+  "version": "1.0.0",
+  "description": "- Langchain 是强大的大语言模型开发框架，简化开发流程，提高开发效率。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/community": "^0.3.38",
+    "@langchain/openai": "^0.5.2",
+    "cheerio": "^1.0.0",
+    "langchain": "^0.3.19"
+  }
+}
