@@ -35,6 +35,10 @@
 - 考察全栈能力
   - 前端  upload 
     - File 对象  html5 新特性  让js可以访问文件系统
+    - Blob 理解
+    - FormData 表单数据  append
+    - es6 map 表示
+      blob  数组 -->  blob 详细信息数组 -->  formData 表单数据 -->  axios 请求数组
   - 后端 
 
 - 写一遍，理解深入

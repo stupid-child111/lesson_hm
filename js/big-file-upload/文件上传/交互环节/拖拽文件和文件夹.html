@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="DIV.css">
+</head>
+<body>
+    <div class="container"></div>
+    <script>
+        const container = document.querySelector('.container');
+        container.ondragenter = function(e){
+                e.preventDefault();
+        }
+        container.ondrop = function(e){
+            e.preventDefault();
+            const files = e.dataTransfer.items;
+            // console.log(files.length);
+            for(const file of files) {
+            const entry = file.webkitGetAsEntry();
+            // console.log(entry);
+            if(entry.isFile){
+                //文件 获取file对象
+                entry.file((file) => {
+                    console.log(file)
+                })
+            }else if(entry.isDirectory){
+                //文件夹  获取文件夹对象中的文件 file对象
+                const reader = entry.createReader();
+                reader.readEntries((entries) => {
+                    console.log(entries);
+                })
+                //如果文件夹中还有文件夹  递归实现
+            };
+
+        }
+    }
+        container.ondragover = function(e){
+            e.preventDefault();
+        }
+    </script>
+</body>
+</html>
