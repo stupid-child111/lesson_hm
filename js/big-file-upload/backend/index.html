@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大文件上传之切片</title>
+</head>
+
+<body>
+    <input type="file" id="input" multiple>
+    <button id="upload"  button="button">上传</button>
+    <!-- button="button"  提交后不会上传页面 -->
+    <!-- 上传进度条 -->
+    <div id="progerss">
+        <script>
+            let input = document.getElementById('input');
+            let upload = document.getElementById('upload');
+            let file = {} //文件对象
+            let chunkList = []; //切片数组
+            const MAX_CHUNK_SIZE = 2 * 1024 * 1024; //2M
+
+            input.addEventListener('change', (e) => {
+                //e  事件对象
+                //e.files  伪数组  包含file对象 访问文件系统的能力
+                // // console.log(e.target.files)
+                file = e.target.files[0]; //获取文件对象
+                console.log(file)
+
+                //切片
+                createChunk(file);
+            })
+
+            //切片大小
+            //promise all 限流
+            function createChunk(f, size = MAX_CHUNK_SIZE) {
+                // file 0 -- > total  二进制对象
+                let cur = 0;
+                console.log(f,'-----------------------------------------')
+                while (cur < f.size) {
+                    chunkList.push(
+                        {
+                            // Blob 二进制对象  
+                            file: f.slice(cur, cur + size), //切片
+                        }
+                    )
+                    cur += size; //更新cur
+                }
+            }
+            //上传
+            upload.addEventListener('click', () => {
+
+            })
+        </script>
+    </div>
+</body>
+
+</html>
