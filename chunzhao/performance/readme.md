@@ -69,3 +69,18 @@
   - LightHouse  性能分析工具
 
 
+
+
+- 使用 setTimeout 模拟 setInterval 会有什么问题
+
+- 如何实现一个并发控制
+
+- 红绿灯
+
+- 手写 Promise.allSettled
+
+- 手写 Promise
+
+- http2.0 多路复用  是不是越多越好  会有上限嘛
+
+- cursor 和 windurf 用的多吗 占比多少  trae使用过吗
