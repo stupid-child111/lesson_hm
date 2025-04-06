@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        let o = {
+    name:'zhangsan',
+    age:18,
+    fn(){
+        console.log(this.name);
+    }
+}
+let p = {...o};
+o.fn = function(){
+    console.log(this.age);
+}
+//修改函数相当与重写函数  得到新的空间 不会互相影响
+console.log(o);
+console.log(p);
+o.fn();
+p.fn();
+    </script> -->
+
+    <script>
+        function deepClone(data) {
+    //object  对象 数组 null
+    if(typeof data === 'object' && data !== null){
+        let res = Array.isArray(data)? [] : {};
+        for(let j in data){
+            if(data.hasOwnProperty(j)){
+                res[j]  = deepClone(data[j])
+            }
+        }
+        return res;
+    }else{
+        return data;
+    }
+}
+
+let object = {
+    name: 'zhangsan',
+    age: 18,
+    fn() {
+        console.log(this.name);
+    },
+    fn1: function () {
+        console.log(this.age);
+    },
+}
+
+let object2 = deepClone(object);
+object.fn1 = function () {
+    console.log(this.age + 10);
+}
+console.log(object);
+console.log(object2);
+object.fn1();
+object2.fn1();
+    </script>
+</body>
+</html>
